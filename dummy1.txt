@@ -1,1 +1,4 @@
 dummy1.txt
+testing fileno()
+testing lineno()
+testing isfirstline()

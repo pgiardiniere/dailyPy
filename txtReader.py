@@ -7,11 +7,22 @@ import glob
 pwd = glob.glob(os.getcwd())
 print(pwd)
 
-s = input("enter string to query txt files in current directory for")
 
-#foreach file in pwd 
-#  print contents --- expand to actually take s and search each file for it.
+files = []
 for file in glob.glob("*.txt"):
-  print(file)
+    files.append(file)
+print(files)
 
 #import fileinput (multiple streams) or use open() with loops to go into the txt files
+#  fileinput looks more appropriate
+#  need to get filenames and feed into a list for .input(arg).
+
+import fileinput
+x = fileinput.input(files)
+print("\n# l# filename() isFirstLine")
+print("*************************")
+for line in x:
+    print(x.fileno(), x.filelineno(), x.filename(), x.isfirstline())
+
+
+#s = input("enter string to query txt files in current director for\n")
