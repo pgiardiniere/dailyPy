@@ -24,5 +24,26 @@ print("*************************")
 for line in x:
     print(x.fileno(), x.filelineno(), x.filename(), x.isfirstline())
 
+print("\n")
+
+
+#interesting snippet that creates a file object / stream from a string alone
+import io
+with io.StringIO() as f:
+    f.write('abcdef')
+    print('gh', file=f)
+    f.seek(0)
+    print(f.read(), "\n")
+
+print(f, "\n")
+
+#foreach filename, create file object with open, read first line, close the file
+for fileName in files:
+    f = open(fileName, "r")
+    print(f.readline())
+    f.close() 
+    
+print("\n", f)
+
 
 #s = input("enter string to query txt files in current director for\n")
