@@ -27,15 +27,7 @@ for line in x:
 print("\n")
 
 
-#interesting snippet that creates a file object / stream from a string alone
-import io
-with io.StringIO() as f:
-    f.write('abcdef')
-    print('gh', file=f)
-    f.seek(0)
-    print(f.read(), "\n")
 
-print(f, "\n")
 
 ## Files - printing contents only
 
@@ -52,6 +44,17 @@ for fileName in files:
     
 print("\n", f)
 
-## Files - matching an input string
+## Files continued - matching an input string
+# get user input, verify string accepted, then test if s == line.rstrip()
+# so far, no logic for telling which file the match resulted in, or which line of the file was a match
 
-#s = input("enter string to query txt files in current director for\n")
+print("please enter the string you want to match \n")
+s = input()
+print(s, "accepted \n")
+
+for fileName in files:
+    f = open(fileName, "r")
+    for line in f:
+        print(s, line.rstrip())
+        if s == line.rstrip():
+            print("matched!", s)
