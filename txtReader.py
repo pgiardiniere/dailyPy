@@ -37,13 +37,21 @@ with io.StringIO() as f:
 
 print(f, "\n")
 
-#foreach filename, create file object with open, read first line, close the file
+## Files - printing contents only
+
+#foreach filename, create file object with open
+#foreach line in file (since file objects act as own iterator)
+#print contents of line, uses rstrip to remove trailing whitespace & newline chars
+#close the file and print a newline character to make it easier on the eyes to tell files apart
 for fileName in files:
     f = open(fileName, "r")
-    print(f.readline())
-    f.close() 
+    for line in f:
+        print(line.rstrip())
+    print("\n")
+    f.close()
     
 print("\n", f)
 
+## Files - matching an input string
 
 #s = input("enter string to query txt files in current director for\n")
