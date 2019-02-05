@@ -10,12 +10,14 @@ import os
 
 
 # confirm user is searching the standard tech txt notes dir
-print("Hit enter to search your standard tech txt notes dir. Insert any string to search current dir instead\n")
+print("Hit enter to search your standard tech txt notes dir. If you'd like to search another dir, enter the abs/rel path\n")
 pwd = input()
 
 # if Return inputted, move to Tech txt notes dir. Otherwise, current directory is queried.
 if pwd == '':
     os.chdir("/Users/Pete/Google Drive/Tech txt notes")
+else:
+    os.chdir(pwd)
 
 files = []
 for file in glob("*.txt"):
