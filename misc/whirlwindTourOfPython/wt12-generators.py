@@ -1,3 +1,7 @@
+### Attribution of code:
+### A Whirlwind Tour of Python by Jake VanderPlas (O’Reilly). Copyright 2016 O’Reilly Media, Inc., 978-1-491-96465-1.
+# All comments my own
+
 
 # from itertools import count
 # for i in count():
