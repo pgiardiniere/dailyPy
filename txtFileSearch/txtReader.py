@@ -1,6 +1,5 @@
 from glob import glob
 import fileinput
-import re
 import os
 
 ###############
