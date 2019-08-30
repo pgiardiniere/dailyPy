@@ -3,3 +3,5 @@
 print("ohai")
 
 print('push 1 worked, test another')
+
+print('test 3, after shell exit')
