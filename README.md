@@ -1,2 +1,2 @@
-# dailyPy
-A repo for daily python musings, exercises, etc.
+# py-stuff
+A repo for random python exercises and toy problems, etc.
