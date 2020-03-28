@@ -14,8 +14,23 @@ class Person:
         self.name = name
         self.age = age
 
-guy = Person("guy", 22)
-print("Person     guy is named", guy.name, "and is", guy.age)
+guy = Person("Guy", 22)
+print("Person guy is named", guy.name, "and is", guy.age)
+
+# Class Methods:
+del(Person)
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def say_hi(self):
+        print("    Ayyy lmao it's ya boi", self.name)
+
+pers = Person("Guy", 22)
+pers.say_hi()
+
 
 # Note that self is not a keyword, we can break convention and use 'foo'.
 class RudePerson:
@@ -28,4 +43,3 @@ print("RudePerson sam is named", sam.name, "and is", sam.age)
 
 # Further Reading on Self in Python3 - from Guido van Fossum himself.
 # http://neopythonic.blogspot.com/2008/10/why-explicit-self-has-to-stay.html
-
