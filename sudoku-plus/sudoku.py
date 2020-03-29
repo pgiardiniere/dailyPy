@@ -36,43 +36,45 @@ class Sudoku:
         print(file=output)
 
 
-# def find_next(board):
-#     for i in range(9):
-#         for j in range(9):
-#             if not board[i][j]: return (i,j)
-#     return (-1,-1)
+def find_next(board):
+    for i in range(9):
+        for j in range(9):
+            if board[i][j] == 0: 
+                return (i,j)
+    return (-1,-1)
 
 
-# def valid_move(board, row, col, val):
-#     for j in range(9):
-#         if board[row][j] == val:
-#             return False
+def valid_move(board, row, col, val):
+    for j in range(9):
+        if board[row][j] == val:
+            return False
 
-#     for i in range(9):
-#         if board[i][col] == val:
-#             return False
+    for i in range(9):
+        if board[i][col] == val:
+            return False
 
-#     tile = (row - row % 3, col - col % 3)
-#     for i in range(tile[0], tile[0] + 3):
-#         for j in range(tile[1], tile[1] + 3):
-#             if board[i][j] == val:
-#                 return False
+    tile = (row - row % 3, col - col % 3)
+    for i in range(tile[0], tile[0] + 3):
+        for j in range(tile[1], tile[1] + 3):
+            if board[i][j] == val:
+                return False
 
-#     return True
+    return True
 
-# def solve(board):
-#     row, col = find_next(board)
-#     if (row == -1): return True
+def solve(sudoku, output):
+    row, col = find_next(sudoku.board)
+    if (row == -1): return True
 
-#     for val in range(1, 10):
-#         if valid_move(board, row, col, val):
-#             board[row][col] = val
+    for val in range(1, 10):
+        if valid_move(sudoku.board, row, col, val):
+            sudoku.board[row][col] = val
+            sudoku.pretty_print(output)
 
-#         if (solve(board)): 
-#             return True
-#         else: 
-#             board[row][col] = 0
-#             return False
+    if (solve(sudoku, output)): 
+        return True
+    else: 
+        sudoku.board[row][col] = 0
+    return False
 
 def change_persists(board):
     board[0][0] = 2003
@@ -82,7 +84,7 @@ def main():
     output = open('output.txt', 'w')
 
     sudoku.pretty_print(output)
-    change_persists(sudoku.board)
+    solve(sudoku, output)
     sudoku.pretty_print(output)
 
     output.close()
