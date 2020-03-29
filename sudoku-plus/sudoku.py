@@ -1,6 +1,6 @@
 # This is a Python port of my Java sudoku solver written for 2168: Data Structs
-# Against my better judgment, we'll do this with plain old Lists first time around.
-import sys
+# Against my better judgment, we'll do this with plain old lists.
+
 
 class Sudoku:
     def __init__(self):
@@ -8,7 +8,7 @@ class Sudoku:
             [9, 6, 0, 0, 1, 0, 2, 0, 8],
             [0, 8, 0, 5, 0, 0, 1, 9, 4],
             [0, 0, 5, 2, 0, 0, 0, 0, 6],
-            [0, 0, 0, 0, 2, 9, 3, 4, 0],            
+            [0, 0, 0, 0, 2, 9, 3, 4, 0],
             [0, 0, 0, 8, 0, 6, 0, 0, 0],
             [0, 9, 2, 4, 3, 0, 0, 0, 0],
             [1, 0, 0, 0, 0, 0, 7, 8, 0],
@@ -20,7 +20,8 @@ class Sudoku:
         for i in range(9):
             for j in range(9):
                 print(self.board[i][j], end=' ')
-                if (j == 8): print()
+                if (j == 8):
+                    print()
         print()
 
     def pretty_print(self, output):
@@ -31,7 +32,7 @@ class Sudoku:
                 if (j > 0 and j % 3 == 0):
                     print('|', end=' ', file=output)
                 print(self.board[i][j], end=' ', file=output)
-                if (j == 8): 
+                if (j == 8):
                     print(file=output)
         print(file=output)
 
@@ -39,9 +40,9 @@ class Sudoku:
 def find_next(board):
     for i in range(9):
         for j in range(9):
-            if board[i][j] == 0: 
-                return (i,j)
-    return (-1,-1)
+            if board[i][j] == 0:
+                return (i, j)
+    return (-1, -1)
 
 
 def valid_move(board, row, col, val):
@@ -61,23 +62,27 @@ def valid_move(board, row, col, val):
 
     return True
 
+
 def solve(sudoku, output):
     row, col = find_next(sudoku.board)
-    if (row == -1): return True
+    if (row == -1):
+        return True
 
     for val in range(1, 10):
         if valid_move(sudoku.board, row, col, val):
             sudoku.board[row][col] = val
             sudoku.pretty_print(output)
 
-    if (solve(sudoku, output)): 
+    if (solve(sudoku, output)):
         return True
-    else: 
+    else:
         sudoku.board[row][col] = 0
     return False
 
+
 def change_persists(board):
     board[0][0] = 2003
+
 
 def main():
     sudoku = Sudoku()
@@ -88,5 +93,6 @@ def main():
     sudoku.pretty_print(output)
 
     output.close()
+
 
 main()
