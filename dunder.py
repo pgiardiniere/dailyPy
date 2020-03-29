@@ -2,11 +2,13 @@
 # https://www.geeksforgeeks.org/dunder-magic-methods-python/
 # https://rszalski.github.io/magicmethods/
 
+
 class MyString:
     """A stupid custom string class"""
     def __init__(self, string):
         self.string = string
-    
+
+
 if __name__ == '__main__':
     some_string = MyString('hey')
     print(MyString)

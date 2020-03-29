@@ -84,7 +84,7 @@ def change_persists(board):
     board[0][0] = 2003
 
 
-def main():
+if __name__ == '__main__':
     sudoku = Sudoku()
     output = open('output.txt', 'w')
 
@@ -93,6 +93,3 @@ def main():
     sudoku.pretty_print(output)
 
     output.close()
-
-
-main()
