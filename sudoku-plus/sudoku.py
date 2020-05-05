@@ -1,5 +1,10 @@
 # This is a Python port of my Java sudoku solver written for 2168: Data Structs
-# Against my better judgment, we'll do this with plain old lists.
+
+# Difference: Use a deque for an iterative solution instead of tail recursion,
+# as using tail-recursion exceeds default max recursion depth for stack frames.
+
+# Track state in the deque using an ordered 3-tuples of (row, col, value)
+from collections import deque
 
 
 class Sudoku:
@@ -36,6 +41,13 @@ class Sudoku:
                     print(file=output)
         print(file=output)
 
+    def isFull(self):
+        for i in range(10):
+            for j in range(10):
+                if (self.board[i][j] == 0):
+                    return False
+        return True
+
 
 def find_next(board):
     for i in range(9):
@@ -64,24 +76,44 @@ def valid_move(board, row, col, val):
 
 
 def solve(sudoku, output):
+    d = deque()
     row, col = find_next(sudoku.board)
-    if (row == -1):
-        return True
+    d.append((row, col, 0))
 
-    for val in range(1, 10):
-        if valid_move(sudoku.board, row, col, val):
-            sudoku.board[row][col] = val
-            sudoku.pretty_print(output)
+    # if (row == -1):
+    #     return True
 
-    if (solve(sudoku, output)):
-        return True
-    else:
-        sudoku.board[row][col] = 0
-    return False
+    while not sudoku.isFull() and d:
+        t = d.pop()
+
+        for val in range(t[2]+1, 10):
+            if valid_move(sudoku.board, t[0], t[1], t[2]+1):
+                sudoku.board[t[0]][t[1]] = val
+                d.append((t[0], t[1], val))
+
+        # If that row/col was not updated, we must backtrack. Else, advance.
+        if sudoku.board[t[0]][t[1]] == t[2]:
+            sudoku.board[t[0]][t[1]] = 0
+
+        else:
+            row, col = find_next(sudoku.board)
+            d.append((row, col, 0))
 
 
-def change_persists(board):
-    board[0][0] = 2003
+# def solve(sudoku, output):
+#     row, col = find_next(sudoku.board)
+#     if (row == -1):
+#         return True
+
+#     for val in range(1, 10):
+#         if valid_move(sudoku.board, row, col, val):
+#             sudoku.board[row][col] = val
+
+#     if (solve(sudoku, output)):
+#         return True
+#     else:
+#         sudoku.board[row][col] = 0
+#     return False
 
 
 if __name__ == '__main__':
