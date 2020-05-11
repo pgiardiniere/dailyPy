@@ -59,7 +59,51 @@ is_unique_2(s2)
 
 
 # So, to implement. I can either make a dictionary with hashcode:char,
-# or make a set of hashcodes. 
+# or make a set of hashcodes.
 
-# I feel like I'd prefer just the set in this case.
+# I feel like I'd prefer just the set in this case. Let's do both.
 
+def set_hash_unique(s):
+    hashes = set()
+    for c in s:
+        hashes.add(hash(c))
+    if len(hashes) < len(s):
+        return False
+    return True
+
+
+def dict_hash_unique(s):
+    d = {}
+    for c in s:
+        d[c] = hash(c)
+    if len(d) < len(s):
+        return False
+    return True
+
+
+set_hash_unique(s1)
+set_hash_unique(s2)
+
+dict_hash_unique(s1)
+dict_hash_unique(s2)
+
+# This algorithm is O(n) time complexity.
+
+
+# ------------------------------
+# hint #2: "Could a bit vector be useful?" (#111)
+
+# well ... the bits of each char a string would also map to unique bitstrings
+# the entire string itself would map to a unique bitstring
+
+# I don't see any performance improvement above O(n) though...
+
+
+# ------------------------------
+# hint #3:  "Could you solve it in O(n log n) time?"
+#           "What might a solution look like?"      (#132)
+
+# O(n log n) implies we are sorting the data using with QuickSort
+# (or a similar time-complexity sort algo)
+
+# a second pass would add an additional O(NlogN + N) something In O(NlogN)...?
