@@ -124,3 +124,5 @@ dict_hash_unique(s2)
 # Then sort + linear pass is O(max(f1, f2))
 # = O(max(n, n log n))
 # = O(n log n).
+
+# Implement sorts in sorts.py
