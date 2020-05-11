@@ -15,12 +15,24 @@ def is_unique(s):
     return True
 
 
-# The 'normal' way
+# Less Pythonic way
 def is_unique_2(s):
     for i in range(len(s)):
         for j in range(len(s)):
             if s[i] == s[j] and i != j:
                 return False
+    return True
+
+
+# Non-Pythonic way. Just don't even do this.
+def is_unique_3(s):
+    i, j = 0, 0
+    while i < len(s):
+        while j < len(s):
+            if s[i] == s[j] and i != j:
+                return False
+            j += 1
+        i += 1
     return True
 
 
@@ -106,4 +118,9 @@ dict_hash_unique(s2)
 # O(n log n) implies we are sorting the data using with QuickSort
 # (or a similar time-complexity sort algo)
 
-# a second pass would add an additional O(NlogN + N) something In O(NlogN)...?
+# A linear pass to check duplicates would add an additional O(n) algo
+
+# We have sort: some f1 that's O(N log N) and linear pass: f2 that's O(N),
+# Then sort + linear pass is O(max(f1, f2))
+# = O(max(n, n log n))
+# = O(n log n).
