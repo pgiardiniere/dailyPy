@@ -13,7 +13,7 @@ def selection_sort(L):
             swap(L, i, min_ind)
 
 
-# Quadtratic sort. O(N^2) complexity.
+# Quadratic sort. O(N^2) complexity.
 def insertion_sort(L):
     for i in range(1, len(L)):
         j = i
@@ -22,7 +22,7 @@ def insertion_sort(L):
             j -= 1
 
 
-# O(n log n) complexity.
+# O(n log n) complexity in average case. O(n^2) worst case (pre-sorted list).
 def quicksort(L, low, high):
     if low < high:
         piv_ind = partition(L, low, high)
@@ -40,6 +40,29 @@ def partition(L, low, high):
             i += 1
     swap(L, i, high)
     return i
+
+# Merge Sort, Heap Sort, would both be O(N log N) sorts I could also add
+# But Quicksort (with optimizations) is faster than them.
+
+# As it stands, the version of Quicksort I implemented has worst-case runtime
+# of O(N^2), which occurs when run upon a pre-sorted array.
+
+# Easy optimization would be:
+# Pick pivot index as median of the first, middle and last elements:
+
+# if (a < b < c) or (c < b < a):
+#     return b
+# if (b < a < c) or (c < a < b):
+#     return a
+# else:
+#     return c
+
+# Other optimizations would be:
+# Spatial optimization of O(log N)  (also better than counterparts merge/heapsort)
+# recur first into smaller side of partition, using tail recursion into larger
+
+# This ensures when you finish sorting smaller partition, you iterate through
+# the entirety of larger partition.
 
 
 # Test all sort methods:
