@@ -22,9 +22,24 @@ def insertion_sort(L):
             j -= 1
 
 
+# Quicksort wrapper hack (probably a more pythonic way to do this)
+def quicksort(L):
+    return quicksort(L, 0, len(L)-1)
+
+
 # O(n log n) complexity.
-def quick_sort(L):
-    print('sorted lel')
+def quicksort(L, low, high):
+    if low < high:
+        piv_ind = partition(L, low, high)
+        quicksort(L, low, piv_ind - 1)
+        quicksort(L, piv_ind, high)
+
+
+# Use Lomuto partitioning for simplicity of implementation.
+def partition(L, low, high):
+    pivot = (L[high])
+    i = low
+    # for j in range(low, high):
 
 
 # Test all sort methods:
@@ -40,4 +55,10 @@ if __name__ == '__main__':
     L1 = ['bc', 'ab', 'aa']
     print(L1)
     selection_sort(L1)
+    print(L1, end='\n\n')
+
+    print('Quicksort:')
+    L1 = ['bc', 'ab', 'aa']
+    print(L1)
+    quicksort(L1)
     print(L1, end='\n\n')
