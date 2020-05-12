@@ -22,11 +22,6 @@ def insertion_sort(L):
             j -= 1
 
 
-# Quicksort wrapper hack (probably a more pythonic way to do this)
-def quicksort(L):
-    return quicksort(L, 0, len(L)-1)
-
-
 # O(n log n) complexity.
 def quicksort(L, low, high):
     if low < high:
@@ -39,7 +34,12 @@ def quicksort(L, low, high):
 def partition(L, low, high):
     pivot = (L[high])
     i = low
-    # for j in range(low, high):
+    for j in range(low, high):
+        if L[j] < pivot:
+            swap(L, i, j)
+            i += 1
+    swap(L, i, high)
+    return i
 
 
 # Test all sort methods:
@@ -60,5 +60,5 @@ if __name__ == '__main__':
     print('Quicksort:')
     L1 = ['bc', 'ab', 'aa']
     print(L1)
-    quicksort(L1)
+    quicksort(L1, 0, len(L1)-1)
     print(L1, end='\n\n')
