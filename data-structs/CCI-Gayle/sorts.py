@@ -81,7 +81,8 @@ if __name__ == '__main__':
     print(L1, end='\n\n')
 
     print('Quicksort:')
-    L1 = ['bc', 'ab', 'aa']
+    # L1 = ['bc', 'ab', 'aa']
+    L1 = ['h','e','l','l','o']
     print(L1)
     quicksort(L1, 0, len(L1)-1)
     print(L1, end='\n\n')

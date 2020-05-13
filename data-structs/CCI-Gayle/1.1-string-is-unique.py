@@ -126,3 +126,11 @@ dict_hash_unique(s2)
 # = O(n log n).
 
 # Implement sorts in sorts.py
+from sorts import quicksort
+
+print(s1)
+s1 = list(s1)
+s2 = list(s2)
+
+quicksort(s1, 0, len(s1)-1)
+quicksort(s2, 0, len(s2)-1)
