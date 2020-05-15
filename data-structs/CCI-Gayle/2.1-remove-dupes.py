@@ -48,13 +48,31 @@ def buffered_dupe_remove(node):
         prev = node
         node = node.next
 
-        print(hashes)
-
 
 def dupe_remove(node):
-    print("not sure about this one... sorting would be wonky")
-    print("could just do an O(n^2) sol'n by brute-force checking all")
+    while node is not None:
+        runner = node
+        while runner.next is not None:
+            if runner.next.data == node.data:
+                runner.next = runner.next.next
+            else:
+                runner = runner.next
+        node = node.next
 
+
+# Hint #9:
+"""Have you tried a hash table?
+"""
+
+# Hint #70:
+"""Without extra space, you'll need O(N^2) time. Try using two pointers,
+with the second pointer being ahead of hte first.
+"""
+
+# Okay, so I got the intent of both hints. Buffered sol'n already done.
+
+# Non-buffered sol'n is ugly as hell though...
+# Oh, I'm unnecessarily counting my current node 'n' forwards each run.
 
 if __name__ == '__main__':
     head = Node(1)
@@ -66,4 +84,15 @@ if __name__ == '__main__':
 
     head.print_list()
     buffered_dupe_remove(head)
+    head.print_list()
+
+    head = Node(1)
+    head.add(2)
+    head.add(2)
+    head.add(3)
+    head.add(2)
+    head.add(4)
+
+    head.print_list()
+    dupe_remove(head)
     head.print_list()
