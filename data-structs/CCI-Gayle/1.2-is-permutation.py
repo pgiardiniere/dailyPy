@@ -13,16 +13,29 @@ def is_permutation(s1, s2):
 
     return True
 
+
 # cheating by not implementing my own sorting algorithm, but it'll do.
 def is_strict_permutation(s1, s2):
     if len(s2) != len(s1):
         return False
 
-    s1_sorted = sorted(s1)
-    s2_sorted = sorted(s2)
-
-    if s1_sorted == s2_sorted:
+    if sorted(s1) == sorted(s2):
         return True
+
+
+def is_hashed_strict_perm(s1, s2):
+    if len(s2) != len(s1):
+        return False
+
+    d1, d2 = {}, {}
+    for i, c in enumerate(s1):
+        d1[hash(c)] = i
+
+    for i, c in enumerate(s2):
+        d2[hash(c)] = i
+
+    # Still don't understand how to make these comparisons in a single pass
+    # for key1, key2 in d1, d2:
 
 
 if __name__ == '__main__':
@@ -59,3 +72,17 @@ if __name__ == '__main__':
     s1 = 'hello'
     s2 = 'olleh'
     print(is_strict_permutation(s1, s2))
+
+    """
+    Hint 3:
+    Could a hash table be useful?
+    """
+    # Yeah, already understood fam.
+
+    """
+    Hint 4:
+    Two strings that are permutations should have the same characters,
+    but in possibly different orders.
+    Can you make the orders look the same?
+    """
+    # Pretty sure hashing would 'order' the stuff too.
