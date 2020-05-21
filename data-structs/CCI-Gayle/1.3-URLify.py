@@ -23,7 +23,7 @@ def make_url_from_list(L):
     return L
 
 
-# NP char array function
+# NP char array function. Still not in-place.
 def make_url_from_arr(L):
     for i, c in enumerate(L):
         if i == 0:
@@ -65,3 +65,19 @@ for i, c in enumerate(s):
 print(L)
 L = make_url_from_arr(L)
 print(L, end='\n\n')
+
+
+# Hint #1:
+"""
+It's often easiest to work with strings from back to front.
+"""
+
+# Hint #2:
+"""
+You might find you need to know num spaces. Try just counting them.
+"""
+
+# Screw it, let's do this in Java real quick.
+# Alright, that was not the best idea.
+
+# Figure out how NumPy does in-place reassignment of array size...
