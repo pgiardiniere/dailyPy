@@ -41,7 +41,7 @@ def make_url_in_place(L):
     for i, c in enumerate(L):
         if c == ' ':
             count += 1
-    i_adj = count * 3
+    i_adj = count * 2
 
     i = L.size - 1
     j = i - i_adj
@@ -93,7 +93,7 @@ print(L, end='\n\n')
 s = 'one space'
 for i, c in enumerate(s):
     L = np.array(c) if i == 0 else np.append(L, c)
-L = np.append(L, ['0', '0', '0'])
+L = np.append(L, ['0', '0'])
 
 print(L)
 L = make_url_in_place(L)
