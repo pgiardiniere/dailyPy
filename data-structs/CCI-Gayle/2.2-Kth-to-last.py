@@ -26,9 +26,57 @@ class Node:
             node = node.next
 
 
+def kth_to_last(k, head):
+    # Ensure we were passed a strictly positive int k
+    if not isinstance(k, int) or k < 1:
+        return None
+
+    slow, fast = head, head
+
+    # Iterate fast k positions ahead of slow. If len(list) < k, return None.
+    for i in range(k):
+        if fast.next is not None:
+            fast = fast.next
+        else:
+            return None
+
+    # Iterate both Node iters in sync. Return when fast hits end.
+    while fast is not None:
+        fast = fast.next
+        slow = slow.next
+    return slow
+
+
 if __name__ == '__main__':
     head = Node('one')
     head.append('two')
     head.append('three')
+    head.append('four')
+    head.append('five')
 
     head.print_all()
+    print()
+
+    print(kth_to_last(4, head).data)
+
+
+# Hints:
+# 8
+"""What if you knew the linked list size? What's the difference between finding
+the Kth-to-last element and finding the Xth element?
+"""
+# 25
+"""If you don't know the linked list's size, can you compute it?
+How does this impact runtime?
+"""
+# 41
+"""Try a recursive implementation. If you can findthe (K-1)th to last element,
+can you find the Kth element?
+"""
+# 67
+"""
+"""
+# 126
+"""
+"""
+
