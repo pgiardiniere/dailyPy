@@ -23,20 +23,34 @@ def is_strict_permutation(s1, s2):
         return True
 
 
-def is_hashed_strict_perm(s1, s2):
+def get_unicode_index(c):
+    a = ord('a')
+    z = ord('z')
+    if (a <= ord(c) <= z):
+        return ord(c) - a
+    return -1
+
+
+import numpy as np  # noqa
+def is_hashed_strict_perm(s1, s2):  # noqa
     if len(s2) != len(s1):
         return False
 
-    d1, d2 = {}, {}
-    for i, c in enumerate(s1):
-        d1[hash(c)] = i
+    hm_1 = np.zeros(26)
+    hm_2 = np.zeros(26)
 
-    for i, c in enumerate(s2):
-        d2[hash(c)] = i
+    for c in s1:
+        dest = get_unicode_index(c)
+        hm_1[dest] += 1
 
-    # Still don't understand how to make these comparisons in a single pass
-    # for key1, key2 in d1, d2:
+    for c in s2:
+        dest = get_unicode_index(c)
+        hm_2[dest] += 1
 
+    if np.array_equal(hm_1, hm_2):
+        return True
+    else:
+        return False
 
 if __name__ == '__main__':
     s1 = 'hello'
@@ -86,3 +100,7 @@ if __name__ == '__main__':
     Can you make the orders look the same?
     """
     # Pretty sure hashing would 'order' the stuff too.
+
+    s1 = 'hello'
+    s2 = 'olleh'
+    print(is_hashed_strict_perm(s1, s2))
