@@ -47,6 +47,11 @@ def kth_to_last(k, head):
     return slow
 
 
+def rec_kth_to_last(k, node, i=0):
+    if not isinstance(k, int) or k < 1:
+        return None
+
+
 if __name__ == '__main__':
     head = Node('one')
     head.append('two')
@@ -74,9 +79,11 @@ How does this impact runtime?
 can you find the Kth element?
 """
 # 67
-"""
+"""You might find it helpful to return multiple values.
+Some languages don't directly support this, but there are workaround for any.
+What are some of those workarounds?
 """
 # 126
+"""Can you do it iteratively? (yeah, already did)
+... Use two pointers ... (abbreviated)
 """
-"""
-
