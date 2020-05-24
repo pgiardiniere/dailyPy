@@ -47,12 +47,22 @@ def kth_to_last(k, head):
     return slow
 
 
-def rec_kth_to_last(k, node, i=0):
+# Not working recursive sol'n
+def rec_kth_to_last(k, node, size=0, j=0):
     if not isinstance(k, int) or k < 1:
         return None
 
+    if node.next is None:
+        if size - k == j:
+            return node
+        else:
+            return (k, node, size+1, j)
 
-if __name__ == '__main__':
+    if node.next is not None:
+        return rec_kth_to_last(k, node.next, size+1, j + 1)
+
+
+def main():
     head = Node('one')
     head.append('two')
     head.append('three')
@@ -63,6 +73,12 @@ if __name__ == '__main__':
     print()
 
     print(kth_to_last(4, head).data)
+
+    # print(rec_kth_to_last(4, head).data)
+
+
+if __name__ == '__main__':
+    main()
 
 
 # Hints:
