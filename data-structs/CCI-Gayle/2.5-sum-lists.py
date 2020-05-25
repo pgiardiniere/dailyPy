@@ -13,7 +13,7 @@
 # Follow up: suppose digits are stored in forwards order.
 # Repeat the above problem.
 
-import numpy as np  # noqa
+# import numpy as np  # noqa
 
 
 class Node:
@@ -38,6 +38,33 @@ class Node:
         print('\n')
 
 
+# get num_digits without a slow string conversion
+import math  # noqa
+def num_digits(num):  # noqa
+    if num > 0:
+        return int(math.log10(num) + 1)
+    if num == 0:
+        return 1
+    if num < 0:
+        return int(math.log10(-num) + 1)
+
+
+# quick-and-dirty num-digits sol'n: convert to/from string.
+def create_list(ans):
+    s = str(ans)
+    i = len(s) - 1
+
+    if i > -1:
+        node = Node(s[i])
+        i -= 1
+
+    while i > -1:
+        node.append(s[i])
+        i -= 1
+
+    return node
+
+
 def sum_lists(L1, L2):
     x1, place = 0, 1
     while L1 is not None:
@@ -52,7 +79,7 @@ def sum_lists(L1, L2):
         L2 = L2.next
 
     ans = x1 + x2
-    print(ans)
+    return create_list(ans)
 
 
 def main():
@@ -68,7 +95,10 @@ def main():
     L1.list_print()
     L2.list_print()
 
-    sum_lists(L1, L2)
+    L3 = sum_lists(L1, L2)
+    L3.list_print()
+
+    # test num_digits()
 
 
 if __name__ == '__main__':
